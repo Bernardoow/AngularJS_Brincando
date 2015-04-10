@@ -8,12 +8,14 @@ app_jogo_da_velha.controller('JogoDaVelhaCtrl', function ($scope) {
     $scope.JogadorVenceu = false;
     $scope.DeuVelha = false;
     $scope.jogo;
+    $scope.Acabou = false;
 
     $scope.iniciarJogo = function(){
         $scope.jogadaDoPrimeiro = true;
         $scope.JogadorVencedor = 0;
         $scope.JogadorVenceu = false;
         $scope.DeuVelha = false;
+        $scope.Acabou = false;
         $scope.jogo = [];
         for (var i = 0; i < $scope.linhas; i++) {
             $scope.jogo[i] = [];
@@ -34,7 +36,7 @@ app_jogo_da_velha.controller('JogoDaVelhaCtrl', function ($scope) {
 
     $scope.jogada = function(lin,col){
         
-        if($scope.jogo[lin][col] === ''){
+        if($scope.jogo[lin][col] === '' && !$scope.Acabou){
             $scope.jogadaDoPrimeiro = !$scope.jogadaDoPrimeiro;
             if (!$scope.jogadaDoPrimeiro) 
                 $scope.jogo[lin][col] = "bolinha";
@@ -90,7 +92,10 @@ app_jogo_da_velha.controller('JogoDaVelhaCtrl', function ($scope) {
                 if($scope.jogo[i][j] === '') deuVelha = false;
             };
         }; 
-        if(deuVelha) $scope.DeuVelha = deuVelha
+        if(deuVelha){
+            $scope.Acabou = true;
+            $scope.DeuVelha = deuVelha;
+        } 
 
     };
 
@@ -103,6 +108,7 @@ app_jogo_da_velha.controller('JogoDaVelhaCtrl', function ($scope) {
                 $scope.JogadorVencedor = 2
             }
             $scope.JogadorVenceu = true;
+            $scope.Acabou = true;
         }
     }
 });
