@@ -1,0 +1,10 @@
+.bolinha{
+    background-image: url("../img/circle_16.png");
+    background-repeat: no-repeat;   
+    background-position: center; 
+}
+.xis{
+    background-image: url("../img/x_16.png");
+    background-repeat: no-repeat;   
+    background-position: center; 
+}
